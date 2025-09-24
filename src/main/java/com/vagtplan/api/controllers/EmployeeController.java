@@ -1,15 +1,45 @@
 package com.vagtplan.api.controllers;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.vagtplan.api.Model.EmployeeDTO;
+import com.vagtplan.api.entities.Employee;
+import com.vagtplan.api.services.EmployeeService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 public class EmployeeController {
-    final private String apiBase = "api/employees/";
+    private final EmployeeService employeeService;
 
+    public EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
 
-    // REST endpoints
+    @GetMapping("/api/employees/")
+    public List<EmployeeDTO> getAllEmployees() {
+        System.out.println("GETTING EMPLOYEES");
+        return employeeService.findAll();
+    }
+
+    @GetMapping("/api/employees/{id}")
+    public ResponseEntity<EmployeeDTO> getEmployeeById(@PathVariable Long id) {
+        Optional<EmployeeDTO> employee = employeeService.getById(id);
+        return employee.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @PostMapping("/api/employees/")
+    public EmployeeDTO createEmployee(@RequestBody EmployeeDTO employeeDTO) {
+        return employeeService.saveEmployee(employeeDTO);
+    }
+
+    @DeleteMapping("/api/employees/{id}")
+    public String deleteEmployeeWithId(@PathVariable Long id) {
+        employeeService.deleleteEmployeeWithId(id);
+        return "deleted employee with id: " + id;
+    }
 
 
 
