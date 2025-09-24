@@ -24,6 +24,6 @@ jobs:
     - name: mvn clean package
       run: mvn clean package
       env:
-        POSTGRES_USER: testuser
-        POSTGRES_PASSWORD: testpass
-        SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/vagtplandb
+        POSTGRES_USER: testUser
+        POSTGRES_PASSWORD: testPassword
+        SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/testDb
