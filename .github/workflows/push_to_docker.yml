@@ -1,7 +1,9 @@
 name: push_to_docker.yml
 on:
   push:
-    branches: [ "master" ]
+    branches:
+      - main
+      - master
 env:
   # Use docker.io for Docker Hub if empty
   REGISTRY: docker.io

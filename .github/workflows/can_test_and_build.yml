@@ -1,6 +1,6 @@
 name: Java Maven Build & test
 on:
-  push:
+  pull_request:
 jobs:
   build_test:
     runs-on: ubuntu-latest
