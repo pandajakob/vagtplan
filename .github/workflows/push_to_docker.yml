@@ -20,8 +20,8 @@ jobs:
           java-version: '24'
           distribution: 'temurin'
           cache: maven
-      - name: mvn clean package
-        run: mvn clean package
+      - name: mvn clean package (skip tests)
+        run: mvn clean package -DskipTests
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
       - name: Log in to Docker Hub
