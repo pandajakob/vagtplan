@@ -18,7 +18,7 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-    @GetMapping("/api/employees/")
+    @GetMapping("/api/employees")
     public List<EmployeeDTO> getAllEmployees() {
         System.out.println("GETTING EMPLOYEES");
         return employeeService.findAll();
@@ -30,7 +30,7 @@ public class EmployeeController {
         return employee.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping("/api/employees/create")
+    @PostMapping("/api/employees")
     public EmployeeDTO createEmployee(@RequestBody EmployeeDTO employeeDTO) {
         return employeeService.saveEmployee(employeeDTO);
     }
