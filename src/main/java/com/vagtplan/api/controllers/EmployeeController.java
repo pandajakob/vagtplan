@@ -30,12 +30,12 @@ public class EmployeeController {
         return employee.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping("/api/employees/")
+    @PostMapping("/api/employees/create")
     public EmployeeDTO createEmployee(@RequestBody EmployeeDTO employeeDTO) {
         return employeeService.saveEmployee(employeeDTO);
     }
 
-    @DeleteMapping("/api/employees/{id}")
+    @DeleteMapping("/api/employees/delete/{id}")
     public String deleteEmployeeWithId(@PathVariable Long id) {
         employeeService.deleleteEmployeeWithId(id);
         return "deleted employee with id: " + id;
